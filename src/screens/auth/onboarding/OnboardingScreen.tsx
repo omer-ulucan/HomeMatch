@@ -2,22 +2,24 @@ import React from "react";
 import { View, Text, Image, StyleSheet } from "react-native";
 import { SignUpButton } from "./SignUpButton";
 
-const signUpOptions = [
+const signUpOptions = (navigation: any) => [
   {
     icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/2c33ce8e5f1d60ff399493257ed03fc4612bdb7bb5286f8f9070ba8f1066ad1d",
     text: "Sign Up as a Tenant",
     bgColor: "#3182CE",
-    onPress: () => {},
+    onPress: () => navigation.navigate("TenantProfile"), // Navigasyon ekledik
   },
   {
-    icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/97452fc2283efe1201059742265768ce8aefece8f3a58a29fc81d95a25db61ec",
+    icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/97452fc2283efe1201059742265768ce8efece8f3a58a29fc81d95a25db61ec",
     text: "Sign Up as a Landlord/Agent",
     bgColor: "#48BB78",
-    onPress: () => {},
+    onPress: () => navigation.navigate("LandlordProfile"), // Navigasyon ekledik
   },
 ];
 
-export const OnboardingScreen: React.FC = () => {
+export const OnboardingScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
+  const options = signUpOptions(navigation);
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -36,7 +38,7 @@ export const OnboardingScreen: React.FC = () => {
         </Text>
       </View>
       <View>
-        {signUpOptions.map((option, index) => (
+        {options.map((option, index) => (
           <View key={index} style={index > 0 ? styles.buttonSpacing : {}}>
             <SignUpButton {...option} />
           </View>
