@@ -1,24 +1,33 @@
 import React from "react";
 import { View, Text, Image, StyleSheet } from "react-native";
 import { SignUpButton } from "./SignUpButton";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../../../navigation/Navigation.types";
+import { useNavigation } from "@react-navigation/native";
 
-const signUpOptions = (navigation: any) => [
-  {
-    icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/2c33ce8e5f1d60ff399493257ed03fc4612bdb7bb5286f8f9070ba8f1066ad1d",
-    text: "Sign Up as a Tenant",
-    bgColor: "#3182CE",
-    onPress: () => navigation.navigate("TenantProfile"), // Navigasyon ekledik
-  },
-  {
-    icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/97452fc2283efe1201059742265768ce8efece8f3a58a29fc81d95a25db61ec",
-    text: "Sign Up as a Landlord/Agent",
-    bgColor: "#48BB78",
-    onPress: () => navigation.navigate("LandlordProfile"), // Navigasyon ekledik
-  },
-];
+type NavigationProp = NativeStackNavigationProp<RootStackParamList, "Onboarding">;
 
-export const OnboardingScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
-  const options = signUpOptions(navigation);
+export const OnboardingScreen: React.FC = () => {
+  const navigation = useNavigation<NavigationProp>();
+
+  const signUpOptions = [
+    {
+      icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/2c33ce8e5f1d60ff399493257ed03fc4612bdb7bb5286f8f9070ba8f1066ad1d",
+      text: "Sign Up as a Tenant",
+      bgColor: "#3182CE",
+      onPress: () => navigation.navigate("TenantProfile"),
+    },
+    {
+      icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/97452fc2283efe1201059742265768ce8efece8f3a58a29fc81d95a25db61ec",
+      text: "Sign Up as a Landlord/Agent",
+      bgColor: "#48BB78",
+      onPress: () => {
+        console.log("Navigating to LandlordProfileForm");
+        navigation.navigate("LandlordProfileForm");
+      },
+    },
+  ];
+  
 
   return (
     <View style={styles.container}>
@@ -38,7 +47,7 @@ export const OnboardingScreen: React.FC<{ navigation: any }> = ({ navigation }) 
         </Text>
       </View>
       <View>
-        {options.map((option, index) => (
+        {signUpOptions.map((option, index) => (
           <View key={index} style={index > 0 ? styles.buttonSpacing : {}}>
             <SignUpButton {...option} />
           </View>

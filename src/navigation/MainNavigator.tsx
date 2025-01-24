@@ -7,8 +7,7 @@ const Tab = createBottomTabNavigator();
 
 const MainNavigator = () => {
   return (
-    <Tab.Navigator
-      id={undefined}
+    <Tab.Navigator id={undefined}
       screenOptions={{
         headerShown: false,
       }}

@@ -1,6 +1,41 @@
-export type RootStackParamList = {
+export interface HousingInfoProps {
+  price: string;
+  location: string;
+  beds: number;
+  baths: number;
+  area: number;
+  isPetFriendly: boolean;
+}export type RootStackParamList = {
   Onboarding: undefined;
-  Login: undefined;
-  Home: undefined;
-  Profile: { userId?: string }; // Parametre opsiyonel hale getirildi
+  TenantProfile: undefined;
+  LandlordProfileForm: undefined;
+  PropertyDetailsForm: undefined;
+  MainLayout: {
+    profileData: {
+      name: string;
+      age: number;
+      profession: string;
+      attributes: {
+        imageUri: string;
+        text: string;
+      }[];
+    };
+  };
+  HousingInfo: {
+    price: string;
+    location: string;
+    beds: number;
+    baths: number;
+    area: number;
+    isPetFriendly: boolean;
+  };
+  SomeDetailScreen: {
+    price: string;
+    location: string;
+    beds: number;
+    baths: number;
+    area: number;
+    isPetFriendly: boolean;
+  };
 };
+
